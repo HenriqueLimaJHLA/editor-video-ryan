@@ -27,7 +27,7 @@ try:
     import playwright  # noqa
     print(f"  {ok(True)}playwright      instalado")
 except ImportError:
-    print(f"  {ok(False)}playwright      não instalado (Motion Design / Claude GIF SVG)")
+    print(f"  {ok(False)}playwright      não instalado (só no modo completo: Motion Design, GIF de SVG)")
 
 print("== Chaves (variáveis de ambiente)")
 for k, uso in [("ELEVENLABS_API_KEY", "video-use, Herk"), ("GOOGLE_API_KEY", "Claude GIF com IA"),
@@ -46,7 +46,7 @@ for k, f in kits.items():
     missing += not present
     note = ""
     if present and k in extra and not (V / k / extra[k]).exists():
-        note = "  (dependências Node não instaladas: install.sh --deps)"
+        note = "  (falta a parte extra: duplo clique em \"2 - Instalar tudo (completo).bat\")"
     print(f"  {ok(present)}{k}{note}")
 if missing:
-    print("\nFaltam kits: rode  bash install.sh")
+    print('\nFaltam kits: dê duplo clique em "1 - Instalar.bat"')

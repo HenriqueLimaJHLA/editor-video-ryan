@@ -8,7 +8,7 @@ description: Estúdio de edição de vídeo que reúne 8 kits de skills (video-u
 Esta skill não edita sozinha: ela escolhe o kit certo, carrega o SKILL.md dele e segue as instruções dele à risca.
 
 `$ROOT` = a pasta desta skill (onde está este arquivo). Os kits ficam em `$ROOT/vendor/`.
-Se `vendor/` estiver vazio ou faltando um kit, rode `bash $ROOT/install.sh`.
+Se `vendor/` estiver vazio ou faltando um kit, rode `python "$ROOT/scripts/instalar.py"` (ou peça à pessoa para dar duplo clique em `1 - Instalar.bat`). Se faltar algo que só o modo completo instala (Playwright, faster-whisper, pacotes Node), ofereça rodar `python "$ROOT/scripts/instalar.py" --completo` você mesmo.
 
 ## Passo 0 — diagnóstico (sempre, antes do primeiro trabalho da sessão)
 Rode `python $ROOT/scripts/doctor.py`. Ele mostra ferramentas, chaves e kits presentes.

@@ -1,0 +1,8 @@
+{
+  "name": "editor-video-ryan",
+  "version": "1.0.0",
+  "description": "Edite vídeos em português pelo Claude Code: corta, legenda, converte, exporta para Reels/TikTok/Shorts/YouTube, faz GIF e motion design. Reúne 8 kits de código aberto (video-use, ffmpeg-skill, Herk Edit Kit, Claude GIF, Claude Motion Design, Remotion, Video Editor Skills, OpenMontage).",
+  "author": { "name": "José Henrique" },
+  "license": "MIT",
+  "keywords": ["video", "edicao", "reels", "legenda", "ffmpeg", "gif", "motion-design", "remotion"]
+}

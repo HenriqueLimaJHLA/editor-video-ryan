@@ -4,7 +4,7 @@ from pathlib import Path
 import sys as _s; _s.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent.parent
-V = ROOT / "vendor"
+V = Path(os.environ.get("EDITOR_VIDEO_KITS") or Path.home() / ".editor-video-ryan" / "kits")
 ok = lambda b: "OK " if b else "-- "
 
 def ver(cmd):
@@ -46,7 +46,7 @@ for k, f in kits.items():
     missing += not present
     note = ""
     if present and k in extra and not (V / k / extra[k]).exists():
-        note = "  (falta a parte extra: duplo clique em \"2 - Instalar tudo (completo).bat\")"
+        note = "  (falta a parte extra: peça ao Claude \"instala a parte completa do editor de vídeo\")"
     print(f"  {ok(present)}{k}{note}")
 if missing:
-    print('\nFaltam kits: dê duplo clique em "1 - Instalar.bat"')
+    print('\nFaltam kits: peça ao Claude \"instala o editor de vídeo\"')

@@ -7,8 +7,9 @@ description: Estúdio de edição de vídeo que reúne 8 kits de skills (video-u
 
 Esta skill não edita sozinha: ela escolhe o kit certo, carrega o SKILL.md dele e segue as instruções dele à risca.
 
-`$ROOT` = a pasta desta skill (onde está este arquivo). Os kits ficam em `$ROOT/vendor/`.
-Se `vendor/` estiver vazio ou faltando um kit, rode `python "$ROOT/scripts/instalar.py"` (ou peça à pessoa para dar duplo clique em `1 - Instalar.bat`). Se faltar algo que só o modo completo instala (Playwright, faster-whisper, pacotes Node), ofereça rodar `python "$ROOT/scripts/instalar.py" --completo` você mesmo.
+`$ROOT` = a pasta desta skill (onde está este arquivo; scripts em `$ROOT/scripts/`).
+`$KITS` = pasta dos kits = variável `EDITOR_VIDEO_KITS` ou, por padrão, `~/.editor-video-ryan/kits/` (fica fora do plugin para sobreviver às atualizações).
+**Primeiro uso:** se `$KITS` não existir ou faltar um kit (o doctor mostra), rode você mesmo (sem pedir para a pessoa abrir terminal) `python "$ROOT/scripts/instalar.py"` — avise "vou baixar os kits de edição, leva alguns minutos na primeira vez". Se faltar algo que só o modo completo instala (Playwright, faster-whisper, pacotes Node), ofereça rodar `python "$ROOT/scripts/instalar.py" --completo` você mesmo.
 
 ## Passo 0 — diagnóstico (sempre, antes do primeiro trabalho da sessão)
 Rode `python $ROOT/scripts/doctor.py`. Ele mostra ferramentas, chaves e kits presentes.
@@ -19,14 +20,14 @@ Para achar uma sub-skill específica (ex.: "legenda animada", "beat sync", "mapa
 
 | Pedido | Kit | Carregue |
 |---|---|---|
-| Vídeo falado (talking head): tirar pausas, "é…", falsos começos, cor, legenda | **video-use** | `vendor/video-use/SKILL.md` (precisa `ELEVENLABS_API_KEY`) |
-| Cortar trecho, juntar, comprimir, mudar formato (9:16, 1:1), limpar/nivelar áudio, logo, exportar por rede — local, sem chave | **ffmpeg-skill** | `vendor/ffmpeg-skill/SKILL.md` |
-| Reels/Shorts semanais: gancho, B-roll, música, cards animados (HyperFrames) | **Herk Edit Kit** | trabalhe DENTRO de `vendor/herk-edit-kit/` seguindo o `CLAUDE.md` dele; skills em `vendor/herk-edit-kit/.claude/skills/<nome>/SKILL.md` (comece por `short-form-edit` ou `edit-video`) |
-| GIF (de vídeo, imagens, SVG, IA), otimizar para Discord etc. | **Claude GIF** | `vendor/claude-gif/skills/claude-gif/SKILL.md` (sub-skills: `-convert`, `-create`, `-edit`, `-generate`, `-optimize`) |
-| Motion design em código, vídeo de lançamento no ritmo da música, refazer vídeo de referência | **Claude Motion Design** | `vendor/claude-motion-design/skill/motion-design/SKILL.md` |
-| Vídeo em código React/Remotion, vídeos em série com dados (um por cliente/produto), mapas | **Remotion** | `vendor/remotion-skills/skills/remotion-create/SKILL.md` (+ `remotion-studio`, `remotion-render`, `remotion-captions`, `remotion-best-practices`…) |
-| Primeiro corte de vlog/aula no DaVinci Resolve Studio | **Video Editor Skills** | `vendor/video-editor-skills/skills/video-editor-setup/SKILL.md` na 1ª vez, depois `edit-video/SKILL.md` |
-| Vídeo do zero (roteiro, narração, imagens, música, legenda): explicativo, documentário | **OpenMontage** | trabalhe DENTRO de `vendor/OpenMontage/` seguindo o `CLAUDE.md`/`AGENT_GUIDE.md` dele |
+| Vídeo falado (talking head): tirar pausas, "é…", falsos começos, cor, legenda | **video-use** | `$KITS/video-use/SKILL.md` (precisa `ELEVENLABS_API_KEY`) |
+| Cortar trecho, juntar, comprimir, mudar formato (9:16, 1:1), limpar/nivelar áudio, logo, exportar por rede — local, sem chave | **ffmpeg-skill** | `$KITS/ffmpeg-skill/SKILL.md` |
+| Reels/Shorts semanais: gancho, B-roll, música, cards animados (HyperFrames) | **Herk Edit Kit** | trabalhe DENTRO de `$KITS/herk-edit-kit/` seguindo o `CLAUDE.md` dele; skills em `$KITS/herk-edit-kit/.claude/skills/<nome>/SKILL.md` (comece por `short-form-edit` ou `edit-video`) |
+| GIF (de vídeo, imagens, SVG, IA), otimizar para Discord etc. | **Claude GIF** | `$KITS/claude-gif/skills/claude-gif/SKILL.md` (sub-skills: `-convert`, `-create`, `-edit`, `-generate`, `-optimize`) |
+| Motion design em código, vídeo de lançamento no ritmo da música, refazer vídeo de referência | **Claude Motion Design** | `$KITS/claude-motion-design/skill/motion-design/SKILL.md` |
+| Vídeo em código React/Remotion, vídeos em série com dados (um por cliente/produto), mapas | **Remotion** | `$KITS/remotion-skills/skills/remotion-create/SKILL.md` (+ `remotion-studio`, `remotion-render`, `remotion-captions`, `remotion-best-practices`…) |
+| Primeiro corte de vlog/aula no DaVinci Resolve Studio | **Video Editor Skills** | `$KITS/video-editor-skills/skills/video-editor-setup/SKILL.md` na 1ª vez, depois `edit-video/SKILL.md` |
+| Vídeo do zero (roteiro, narração, imagens, música, legenda): explicativo, documentário | **OpenMontage** | trabalhe DENTRO de `$KITS/OpenMontage/` seguindo o `CLAUDE.md`/`AGENT_GUIDE.md` dele |
 
 Regras de escolha:
 - Só cortar/legendar vídeo falado → video-use; sem chave ElevenLabs → ffmpeg-skill (+ faster-whisper para legenda).

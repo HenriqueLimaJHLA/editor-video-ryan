@@ -1,0 +1,11 @@
+{
+  "name": "editor-video-ryan",
+  "owner": { "name": "José Henrique" },
+  "plugins": [
+    {
+      "name": "editor-video-ryan",
+      "source": "./",
+      "description": "Editor de vídeo em português para o Claude Code (8 kits em uma skill)."
+    }
+  ]
+}

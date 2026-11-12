@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
 ROOT = Path(__file__).resolve().parent.parent
-V, LOCK = ROOT / "vendor", ROOT / "kits.lock"
+V, LOCK = Path(os.environ.get("EDITOR_VIDEO_KITS") or Path.home() / ".editor-video-ryan" / "kits"), ROOT / "kits.lock"
 PY = sys.executable
 modo = sys.argv[1] if len(sys.argv) > 1 else ""
 
@@ -32,7 +32,7 @@ if not ok:
     sys.exit("\nSem o git não dá para baixar os kits. Instale e rode de novo.")
 
 passo("Baixando os 8 kits de edição (na primeira vez demora alguns minutos)")
-V.mkdir(exist_ok=True)
+V.mkdir(parents=True, exist_ok=True)
 linhas = [l.split() for l in LOCK.read_text(encoding="utf-8").splitlines() if l.strip()]
 novas = []
 for nome, repo, sha in linhas:
@@ -65,12 +65,15 @@ if modo == "--completo":
 
 passo("Ativando a skill no Claude Code")
 subprocess.run([PY, str(ROOT / "scripts" / "catalogo.py")])
+via_plugin = "plugins" in ROOT.parts  # instalada pelo /plugin: o Claude Code já registra
 dest = Path.home() / ".claude" / "skills" / "editor-video-ryan"
 dest.parent.mkdir(parents=True, exist_ok=True)
-if not dest.exists():
+if via_plugin:
+    pass
+elif not dest.exists():
     if win: subprocess.run(["cmd", "/c", "mklink", "/J", str(dest), str(ROOT)], capture_output=True)
     else: dest.symlink_to(ROOT)
-print(f"   ok  skill ativa em {dest}")
+print("   ok  skill ativa" + ("" if via_plugin else f" em {dest}"))
 
 passo("Diagnóstico final")
 subprocess.run([PY, str(ROOT / "scripts" / "doctor.py")])

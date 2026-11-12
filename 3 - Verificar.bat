@@ -15,6 +15,6 @@ if errorlevel 1 (
   pause
   exit /b
 )
-python "scripts\doctor.py"
+python "skills\editor-video-ryan\scripts\doctor.py"
 echo.
 pause

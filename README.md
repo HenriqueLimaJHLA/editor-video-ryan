@@ -32,6 +32,10 @@ Abra o Claude Code na pasta onde estão seus vídeos e peça, por exemplo:
 - *"Transforma esse vídeo num GIF leve"*
 - *"Faz um vídeo animado de 20 segundos apresentando minha loja"*
 
+**Não precisa digitar nenhum comando:** o Claude percebe que é um pedido de vídeo e ativa a skill sozinho. Se quiser garantir que ele use esta skill (por exemplo, num pedido vago ou se você tiver outras skills de vídeo), comece a mensagem com `/editor-video-ryan`:
+
+- `/editor-video-ryan corta do segundo 10 ao 40 e deixa em pé`
+
 Ele mostra o plano antes de cortar e **nunca mexe no vídeo original**. Os arquivos prontos vão para a pasta `saida/`.
 
 ## Dicas

@@ -15,6 +15,6 @@ if errorlevel 1 (
   pause
   exit /b
 )
-python "scripts\instalar.py" --completo"
+python "scripts\instalar.py" --completo
 echo.
 pause

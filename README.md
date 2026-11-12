@@ -17,8 +17,12 @@ Uma skill do Claude Code que reúne 8 kits de edição de vídeo e escolhe o cer
 ```bash
 bash install.sh          # clona os kits em vendor/ e registra a skill
 bash install.sh --deps   # idem + instala dependências Python/Node (demorado)
+bash install.sh --update # puxa a versão nova de cada kit e atualiza kits.lock
+python scripts/doctor.py # diagnóstico: ferramentas, chaves, kits
 ```
-Requisitos: git, ffmpeg, Python 3.10+, Node 22+. Os kits não são versionados aqui (`vendor/` é ignorado); `install.sh` também os atualiza.
+Requisitos: git, ffmpeg, Python 3.10+, Node 22+. Os kits não são versionados aqui (`vendor/` é ignorado); as versões ficam fixadas em `kits.lock`, para que um kit atualizado não quebre nada sem você ver.
+
+`references/catalogo.md` lista as 142 sub-skills dos kits (gerado por `scripts/catalogo.py`).
 
 ## Usar
 No Claude Code, peça normalmente: *"edita esse vídeo num Reels de 60s com legenda"* ou `/editor-video-ryan`.
